@@ -4,13 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A single-page marketing/technical brief site: "Kleros: The Oracle for Prediction Markets". The entire site is `index.html` (~750 lines) plus static images in `assets/`. There is no build system, package manager, linter, or test suite — do not add one unless asked.
+A single-page marketing/technical brief site: "Kleros: The Oracle for Prediction Markets". The entire site is `index.html` (~750 lines) plus static images in `assets/`. There is no package manager, linter, or test suite — do not add one unless asked.
 
 To preview locally, serve the directory (relative asset paths need HTTP, though `file://` also works):
 
 ```bash
 python3 -m http.server 8000   # then open http://localhost:8000
 ```
+
+Deployment is on Netlify: `./build.sh` (run by `netlify.toml`) packages the site into `dist/`, vendoring the Google Fonts into `dist/fonts/` and rewriting the font `<link>` tags so the deployed page makes no third-party requests. If you change the font families in `index.html`, the build picks them up automatically (it reads the `fonts.googleapis.com` URL from the file). Source `index.html` keeps the CDN links for buildless local preview.
 
 ## Architecture
 
