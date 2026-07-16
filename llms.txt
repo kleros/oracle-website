@@ -1,0 +1,41 @@
+# Kleros Oracle
+
+> Kleros is the resolution layer for prediction markets: an optimistic oracle
+> (Reality.eth) backstopped by Kleros Court, an on-chain jury arbitration system.
+
+Live since 2018. Resolving prediction-market disputes since 2020 (Omen, now
+Presagio, was first to integrate). 2,653 disputes resolved on-chain across
+Ethereum, Gnosis and Arbitrum. 750+ jurors participating.
+
+## Key facts
+
+- Mechanism: a question is posted on Reality.eth with a bond, naming Kleros as
+  arbitrator. Anyone answers or challenges by doubling the bond; most questions
+  settle there. Genuine disagreements escalate to Kleros Court, where jurors are
+  drawn randomly, weighted by staked PNK, from a topic-relevant subcourt.
+- Appeals double the jury each round (3 → 7 → 15 → 31 → …), making it
+  progressively more expensive to overturn a well-evidenced answer.
+- Jurors cannot choose their case and cannot be chosen: stake raises the
+  probability of being drawn but never buys the seat. 25% of stake is a 25%
+  chance of being drawn, not 25% of the verdict.
+- Versus UMA: Kleros uses a fixed-size per-case jury from a topic-relevant
+  subcourt with evidence and appeals; UMA uses a token-weighted vote of the
+  entire holder base with escalation to the DVM. Kleros cases mostly resolve in
+  a day; heavily appealed cases can take a couple of weeks.
+- Integrations: Seer, Omen/Presagio, Foresight, Precog, Futarchy.fi,
+  Deep Funding, Ringo.
+- Available on Ethereum, Arbitrum, Gnosis, Polygon, Base, Optimism, Unichain;
+  Solana integration in progress.
+
+## Full content
+
+- [The complete brief in markdown](https://oracle.kleros.io/brief.md)
+
+## Docs
+
+- [Kleros Oracle product docs](https://docs.kleros.io/products/oracle)
+- [Integration guide](https://docs.kleros.io/integrations/types-of-integrations/3.-kleros-oracle-integration)
+
+## Contact
+
+- juanrah@kleros.io · https://t.me/juanrah

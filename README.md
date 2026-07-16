@@ -9,6 +9,8 @@ The site is built as a full-screen slide deck: navigate with scroll, arrow keys,
 - `index.html` — the entire site: markup, styles, and the vanilla-JS deck controller. No frameworks, no dependencies.
 - `assets/` — logos and images.
 - `build.sh` — packages the site into `dist/` for deployment (see below).
+- `brief.md` / `llms.txt` — markdown version of the brief and AI-agent index, served alongside the site. Keep in sync with the deck's copy.
+- `robots.txt`, `sitemap.xml`, favicons — SEO plumbing, copied into `dist/` at build time.
 
 ## Running locally
 

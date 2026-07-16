@@ -14,6 +14,8 @@ python3 -m http.server 8000   # then open http://localhost:8000
 
 Deployment is on Netlify: `./build.sh` (run by `netlify.toml`) packages the site into `dist/`, vendoring the Google Fonts into `dist/fonts/` and rewriting the font `<link>` tags so the deployed page makes no third-party requests. If you change the font families in `index.html`, the build picks them up automatically (it reads the `fonts.googleapis.com` URL from the file). Source `index.html` keeps the CDN links for buildless local preview.
 
+SEO/agent files at the repo root (`robots.txt`, `sitemap.xml`, `llms.txt`, `brief.md`, `favicon.png`, `apple-touch-icon.png`) are copied into `dist/` by `build.sh`. **When deck copy in `index.html` changes, update `brief.md` and `llms.txt` to match** (they are hand-authored mirrors, not generated), and bump `<lastmod>` in `sitemap.xml`. The canonical production URL (https://oracle.kleros.io) appears in the head metadata, JSON-LD, robots.txt, and sitemap.xml.
+
 ## Architecture
 
 `index.html` is a full-viewport slide deck ("spaces"), not a scrolling page:
