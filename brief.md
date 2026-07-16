@@ -20,7 +20,7 @@ scales alongside the platform.
 
 ## 2. Proof, before the pitch
 
-**Live since 2018. Not a whitepaper.**
+**Live since 2018. Proven in production.**
 
 - **2018** — Running a live, on-chain arbitration system since.
 - **2020** — Resolving prediction-market disputes. Omen (now Presagio) was
