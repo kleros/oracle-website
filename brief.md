@@ -82,10 +82,10 @@ link.
 - **[Case #302 · Omen/Presagio](https://klerosboard.com/1/cases/302)** —
   "≥1,000 reported US COVID deaths in a single day, first half of July 2020?"
   General Court, 500 votes. Ruled Yes.
-- **[Case #1661 · Seer](https://klerosboard.com/100/cases/1661)** — "Was
+- **[Case #1661 · Seer](https://klerosboard.com/1/cases/1661)** — "Was
   Zelenskyy photographed or videotaped wearing a suit between May 22 and
   June 30, 2025?" General Court, 31 votes. Ruled Yes.
-- **[Case #1657 · Seer](https://klerosboard.com/100/cases/1657)** — "Winner of
+- **[Case #1657 · Seer](https://klerosboard.com/1/cases/1657)** — "Winner of
   the run-off in the 2024 Romanian presidential election?" General Court,
   31 votes. Resolved too soon, run-off annulled.
 
