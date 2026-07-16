@@ -11,7 +11,7 @@ rm -rf dist
 mkdir -p dist/fonts
 cp index.html dist/
 cp -R assets dist/
-cp robots.txt sitemap.xml llms.txt brief.md favicon.png apple-touch-icon.png dist/
+cp robots.txt sitemap.xml llms.txt brief.md favicon-dark.png favicon-light.png apple-touch-icon.png dist/
 
 CSS_URL=$(grep -o 'https://fonts\.googleapis\.com/css2[^"]*' index.html | head -n1)
 if [ -z "$CSS_URL" ]; then

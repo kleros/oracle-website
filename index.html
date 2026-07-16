@@ -21,7 +21,8 @@
 <meta name="twitter:image" content="https://oracle.kleros.io/assets/og-card.png">
 <meta name="theme-color" content="#16130E" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#F1ECE1" media="(prefers-color-scheme: light)">
-<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="icon" href="/favicon-dark.png" type="image/png" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon-light.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script type="application/ld+json">
 {
@@ -59,6 +60,8 @@
   [data-theme="dark"]{--bg:#16130E;--ink:#F1ECE1;--text:#C9C2B2;--muted:#A39C8B;--mono:#8E8675;--faint:#6B6454;--line:#2E2820;--card:#1C1812;--panel:#211A31;--panel-2:#261D38;--panel-border:#3C2F58;--panel-faint:rgba(245,240,230,0.035);--accent:#A98BE8;--accent-deep:#CBB9F2;--accent-soft:#B6A6DE;--accent-arrow:#6E5CA0;--arrow:#4A4435;--on-accent:#16130E;--header-bg:#221C14;--header-bg-accent:#2C2150;--on-header:#C9C2B2;--on-header-accent:#CBB9F2;--pos:#5FBE89;--warn:#D6904F;}
   [data-theme="light"]{--bg:#F1ECE1;--ink:#1B1813;--text:#46413A;--muted:#5A5447;--mono:#8A8272;--faint:#A59C88;--line:#D8CFBE;--card:#FBF8F1;--panel:#EFEAF8;--panel-2:#F1ECFA;--panel-border:#DACFF0;--panel-faint:rgba(27,24,19,0.035);--accent:#4B2A93;--accent-deep:#2A1A5E;--accent-soft:#4B3A78;--accent-arrow:#B7A8DE;--arrow:#C3B9A6;--on-accent:#F5F1E8;--header-bg:#1B1813;--header-bg-accent:#2A1A5E;--on-header:#E7DFCE;--on-header-accent:#C7B2F0;--pos:#1F7A4D;--warn:#9A5A1E;}
   [data-theme="dark"] [data-invert]{filter:invert(1) hue-rotate(180deg) brightness(1.06) !important;}
+  /* logo.svg is white; flip it dark for the light theme */
+  [data-theme="light"] [data-logo]{filter:invert(1);}
   [data-nav]:hover [data-nav-label]{opacity:1 !important;}
   /* !important needed: the buttons' inline all:unset otherwise wins over this rule */
   [data-nav]:focus-visible,[data-prev]:focus-visible,[data-next]:focus-visible,[data-theme-toggle]:focus-visible{outline:2px solid var(--accent) !important;outline-offset:2px !important;}
@@ -97,7 +100,7 @@
   <!-- ================= CHROME ================= -->
   <!-- top-left brand -->
   <div data-no-advance style="position:fixed;top:clamp(20px,3.2vh,40px);left:clamp(22px,3vw,52px);z-index:60;display:flex;align-items:center;gap:11px;pointer-events:none;">
-    <img src="assets/kleros-mark.png" alt="Kleros" data-invert style="height:30px;width:auto;display:block;filter:saturate(0) contrast(1.05);">
+    <img src="assets/logo.svg" alt="Kleros" data-logo style="height:30px;width:auto;display:block;">
     <div style="line-height:1.15;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.22em;font-weight:600;color:var(--ink);">KLEROS</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.2em;color:var(--mono);">ORACLE · PREDICTION MARKETS</div>
