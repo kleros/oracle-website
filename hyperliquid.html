@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kleros for Hyperliquid HIP-4 Deployers</title>
+<meta name="description" content="Settlement insurance for HIP-4 outcome market deployers: bind your markets to Reality.eth with a Kleros jury backstop, settle automatically, and make every settlement defensible. Proven live on testnet, day one of permissionless deployment.">
+<link rel="canonical" href="https://oracle.kleros.io/hyperliquid">
+<meta property="og:title" content="Kleros for Hyperliquid HIP-4 Deployers">
+<meta property="og:description" content="You are staking 500k HYPE on every settlement decision. Kleros turns HIP-4 settlement from a personal liability into a public, defensible process.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://oracle.kleros.io/hyperliquid">
+<meta property="og:site_name" content="Kleros">
+<meta name="theme-color" content="#16130E" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F1ECE1" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/favicon-dark.png" type="image/png" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon-light.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;padding:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-family:'Newsreader',Georgia,serif;}
+  ::selection{background:#7C5BD0;color:#fff;}
+  [data-theme="dark"]{--bg:#16130E;--ink:#F1ECE1;--text:#C9C2B2;--muted:#A39C8B;--mono:#8E8675;--faint:#6B6454;--line:#2E2820;--card:#1C1812;--panel:#211A31;--panel-2:#261D38;--panel-border:#3C2F58;--panel-faint:rgba(245,240,230,0.035);--accent:#A98BE8;--accent-deep:#CBB9F2;--accent-soft:#B6A6DE;--on-accent:#16130E;--pos:#5FBE89;--warn:#D6904F;}
+  [data-theme="light"]{--bg:#F1ECE1;--ink:#1B1813;--text:#46413A;--muted:#5A5447;--mono:#8A8272;--faint:#A59C88;--line:#D8CFBE;--card:#FBF8F1;--panel:#EFEAF8;--panel-2:#F1ECFA;--panel-border:#DACFF0;--panel-faint:rgba(27,24,19,0.035);--accent:#4B2A93;--accent-deep:#2A1A5E;--accent-soft:#4B3A78;--on-accent:#F5F1E8;--pos:#1F7A4D;--warn:#9A5A1E;}
+  body{background:var(--bg);color:var(--text);}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;}
+  .panel{background:var(--panel);border:1px solid var(--panel-border);border-radius:10px;padding:22px 24px;}
+  table{border-collapse:collapse;width:100%;}
+  td,th{border-top:1px solid var(--line);padding:10px 12px 10px 0;text-align:left;vertical-align:top;font-size:15.5px;}
+  th{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);font-weight:500;}
+  code{font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:var(--accent-deep);background:var(--panel-faint);padding:1px 5px;border-radius:4px;}
+  pre{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.75;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;overflow-x:auto;}
+  .steps li{margin-bottom:14px;}
+  @media (max-width:820px){
+    [data-wrap]{padding:0 20px !important;}
+    [data-hero-h]{font-size:34px !important;line-height:1.15 !important;}
+    [data-cols]{grid-template-columns:1fr !important;}
+  }
+</style>
+</head>
+<body data-theme="dark" id="top">
+
+<div data-wrap style="max-width:880px;margin:0 auto;padding:0 32px;">
+
+  <!-- header -->
+  <header style="display:flex;align-items:baseline;justify-content:space-between;padding:28px 0 0;">
+    <a href="https://oracle.kleros.io/" class="mono" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);">← Kleros Oracle</a>
+    <button class="mono" onclick="const b=document.body;b.dataset.theme=b.dataset.theme==='dark'?'light':'dark';" style="background:none;border:1px solid var(--line);border-radius:6px;color:var(--mono);font-size:11px;letter-spacing:.12em;padding:5px 10px;cursor:pointer;">THEME</button>
+  </header>
+
+  <!-- hero -->
+  <section style="padding:72px 0 26px;">
+    <div class="mono" style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;">Hyperliquid · HIP-4 Outcome Markets</div>
+    <h1 data-hero-h style="font-family:'Newsreader',serif;font-weight:500;font-size:46px;line-height:1.12;color:var(--ink);margin:0 0 22px;max-width:760px;">You are staking 500,000 HYPE on every settlement decision.</h1>
+    <p style="font-size:19px;line-height:1.65;max-width:680px;margin:0 0 14px;">HIP-4 deployers settle their own markets — and validators can slash the stake for markets settled <em>wrong</em>, settled <em>late</em>, or defined <em>ambiguously</em>. Kleros turns settlement from a personal liability into a public, defensible, automated process: an open bonded oracle with a jury of last resort, and an on-chain record proving you followed it.</p>
+    <p style="margin:26px 0 0;">
+      <a href="mailto:juanrah@kleros.io" style="display:inline-block;background:var(--accent);color:var(--on-accent);border-radius:8px;padding:11px 20px;font-size:16px;font-weight:500;">Talk to us</a>
+      <a href="https://t.me/juanrah" class="mono" style="margin-left:18px;font-size:13px;letter-spacing:.06em;">@juanrah on Telegram</a>
+    </p>
+  </section>
+
+  <!-- proof strip -->
+  <section class="panel" style="margin:34px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;" data-cols>
+    <div>
+      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Live since day one</div>
+      <div style="color:var(--ink);font-size:16px;line-height:1.5;">Among the first permissionless HIP-4 deployers — markets live within hours of the testnet launch (July&nbsp;31, 2026), the only ones bound to an external oracle.</div>
+    </div>
+    <div>
+      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Full lifecycle: 3h 06m</div>
+      <div style="color:var(--ink);font-size:16px;line-height:1.5;">Deploy → on-chain oracle binding → bonded answer → <em>staged manipulation attempt</em> → correction → automatic settlement. All on-chain, all linkable.</div>
+    </div>
+    <div>
+      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Manipulation cost</div>
+      <div style="color:var(--ink);font-size:16px;line-height:1.5;">The staged attacker's wrong answer survived 90 seconds and forfeited its bond to the honest corrector. Lying is expensive; correcting is profitable.</div>
+    </div>
+  </section>
+
+  <!-- the problem -->
+  <section style="padding:36px 0 8px;">
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">Three ways a deployer loses their stake</h2>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">Hyperliquid's spec makes the deployer the settlement authority — and makes the stake slashable by validator vote on three grounds:</p>
+    <table style="margin:10px 0 6px;">
+      <tr><th style="width:200px;">Slashing ground</th><th>The exposure</th></tr>
+      <tr><td class="mono" style="color:var(--warn);">Settled incorrectly</td><td>Your private judgment call is the final answer. A contested edge case becomes validators re-litigating your market — with your stake on the table.</td></tr>
+      <tr><td class="mono" style="color:var(--warn);">Unsettled &gt; 1 week</td><td>Settlement ops is a standing obligation. Hyperliquid's own testnet accumulated markets left unsettled for six weeks — the failure mode is real, and it's slashable.</td></tr>
+      <tr><td class="mono" style="color:var(--warn);">Poorly defined</td><td>Ambiguity discovered at settlement time is too late. Someone must absorb the judgment — today, that someone is you.</td></tr>
+    </table>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">Traders carry the mirror risk: there is no dispute mechanism anywhere in HIP-4. Whoever holds the deployer key decides who gets paid — "trust me" with a bond.</p>
+  </section>
+
+  <!-- the pattern -->
+  <section style="padding:36px 0 8px;">
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">The pattern: outsource truth, keep execution</h2>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">HyperCore can't read other chains, so no bridge is possible — instead, the deployer <em>pre-commits</em> to an external truth process and automates following it:</p>
+    <ol class="steps" style="font-size:17px;line-height:1.65;max-width:700px;padding-left:22px;">
+      <li><strong style="color:var(--ink);">Deploy</strong> your market from an approved template, as usual.</li>
+      <li><strong style="color:var(--ink);">Bind it</strong> — post a mirror question on <a href="https://reality.eth.limo">Reality.eth</a> with a <strong style="color:var(--ink);">Kleros arbitrator</strong>, and record the market&nbsp;→&nbsp;question link in the on-chain <a href="https://explore-testnet.hyperpc.app/address/0xCC9c47c46382E1eD3Bef8c90F9b40C5B41975F25">Outcome Oracle Registry</a> on HyperEVM. From this moment, your settlement discretion is publicly forfeited.</li>
+      <li><strong style="color:var(--ink);">Resolve in the open</strong> — at settlement time, anyone posts the answer with money behind it. Wrong answers are challengeable at 2× the bond by anyone on earth. Genuinely contested questions go to a <strong style="color:var(--ink);">Kleros jury</strong>, whose ruling is final and overrides all bonds.</li>
+      <li><strong style="color:var(--ink);">Settle automatically</strong> — a relayer watches the question and, the moment it finalizes, settles your market to match, signed by a restricted agent key that can't touch funds. Never wrong, never late.</li>
+    </ol>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">If validators ever question a settlement, your defense is a URL: the question, the bonds, the challenges, the ruling, and the settlement that matches — timestamped and immutable.</p>
+  </section>
+
+  <!-- live evidence -->
+  <section style="padding:36px 0 8px;">
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">Don't take our word — read the chain</h2>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">A complete lifecycle, run on testnet the day permissionless deployment launched, including a deliberate manipulation attempt:</p>
+    <table style="margin:10px 0 6px;">
+      <tr><th style="width:250px;">Claim</th><th>Proof</th></tr>
+      <tr><td>Market deployed permissionlessly</td><td><a href="https://app.hyperliquid-testnet.xyz/explorer/tx/0x8b3c0fc9205c79cb8cb50425f3977901080027aebb5f989d2f04bb1bdf5053b6" class="mono" style="font-size:13px;">deploy tx on HyperCore</a></td></tr>
+      <tr><td>Oracle binding published <em>before</em> resolution</td><td><a href="https://explore-testnet.hyperpc.app/tx/0xa909ee5ca92540be5c0bb554babd7dbc63ce716e85f8fad718bd6a50dea6931a" class="mono" style="font-size:13px;">registry tx on HyperEVM</a> (source-verified contract)</td></tr>
+      <tr><td>Question, arbitrator &amp; timing immutable</td><td><a href="https://reality.eth.limo/app/#!/network/421614/question/0xB78396EFaF0a177d125e9d45B2C6398Ac5f803B9-0x37e5db22a8007e4fe6795102bb1ab3f312308cb8eafd82380af4763dfb4013eb" class="mono" style="font-size:13px;">question on reality.eth</a></td></tr>
+      <tr><td>Manipulation attempted &amp; defeated</td><td>same page — answer history: honest 0.001 → <span class="mono" style="color:var(--warn);">false 0.002</span> → honest 0.004 → finalized <span class="mono" style="color:var(--pos);">YES</span></td></tr>
+      <tr><td>Settlement matches the oracle</td><td><a href="https://app.hyperliquid-testnet.xyz/explorer/tx/0xf780061afd81c30cf8f90425f49f6f0105001e009884e1df9b48b16dbc859cf7" class="mono" style="font-size:13px;">settle tx on HyperCore</a></td></tr>
+    </table>
+  </section>
+
+  <!-- toolkit -->
+  <section style="padding:36px 0 8px;">
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">The toolkit</h2>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">Everything above is packaged as <span class="mono" style="color:var(--ink);">hip4kit</span> — a reference CLI a deployer runs end to end. It encodes the sharp edges we discovered operating on day one (canonical action serialization, agent-vs-master signing rules, question timing, the settlement latency budget), so your integration takes an afternoon, not a debugging week:</p>
+    <pre>hip4kit activate            # one-time deployer registration
+hip4kit deploy-binary ...   # create a market from a template
+hip4kit ask-reality  ...    # mirror question, Kleros arbitrator attached
+hip4kit register-binding    # publish the oracle commitment on-chain
+hip4kit watch               # relayer: answer, monitor, settle — automatically</pre>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">Your master key signs exactly once (activation). Everything operational runs on a restricted, revocable agent key. The toolkit is open — or integrate the pattern directly into your own stack; nothing about it is proprietary. <a href="mailto:juanrah@kleros.io">Write to us</a> for the repo and a guided setup.</p>
+  </section>
+
+  <!-- what's next -->
+  <section style="padding:36px 0 8px;">
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">Where this goes: beyond price markets</h2>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">Today's templates only express price questions. The vast category — sports, elections, real-world events — is exactly what Hyperliquid's template system can't safely allow yet, because ambiguous questions need a resolution process, not just a threshold. One template changes that: <em>"settles per the finalized answer of a Reality.eth question."</em> The template stays mechanically unambiguous; the human question lives where bonds and juries handle ambiguity. We've drafted that template and are putting it through Hyperliquid's feedback process. Deployers who integrate the pattern now are first in line for the markets everyone actually wants to trade.</p>
+  </section>
+
+  <!-- footer -->
+  <footer style="border-top:1px solid var(--line);margin-top:44px;padding:26px 0 40px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;">
+    <div class="mono" style="font-size:12px;letter-spacing:.12em;color:var(--mono);">KLEROS · ORACLE — <a href="https://oracle.kleros.io/">the full brief</a> · <a href="https://docs.kleros.io/products/oracle">docs</a></div>
+    <div class="mono" style="font-size:12px;letter-spacing:.12em;color:var(--mono);"><a href="mailto:juanrah@kleros.io">juanrah@kleros.io</a> · <a href="https://t.me/juanrah">t.me/juanrah</a></div>
+  </footer>
+
+</div>
+</body>
+</html>
