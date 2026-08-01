@@ -65,19 +65,19 @@
     </p>
   </section>
 
-  <!-- proof strip -->
+  <!-- value strip -->
   <section class="panel" style="margin:34px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;" data-cols>
     <div>
-      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Live since day one</div>
-      <div style="color:var(--ink);font-size:16px;line-height:1.5;">Among the first permissionless HIP-4 deployers — markets live within hours of the testnet launch (July&nbsp;31, 2026), the only ones bound to an external oracle.</div>
+      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Defensible settlements</div>
+      <div style="color:var(--ink);font-size:16px;line-height:1.5;">Every settlement is backed by a public, bonded, challengeable answer — with a Kleros jury as the final word. If validators ever ask, your defense is a URL.</div>
     </div>
     <div>
-      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Full lifecycle: 3h 06m</div>
-      <div style="color:var(--ink);font-size:16px;line-height:1.5;">Deploy → on-chain oracle binding → bonded answer → <em>staged manipulation attempt</em> → correction → automatic settlement. All on-chain, all linkable.</div>
+      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Never late</div>
+      <div style="color:var(--ink);font-size:16px;line-height:1.5;">A relayer settles your markets the moment the oracle finalizes — running on a restricted key that can't touch funds. The 1-week rule stops being your problem.</div>
     </div>
     <div>
-      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Manipulation cost</div>
-      <div style="color:var(--ink);font-size:16px;line-height:1.5;">The staged attacker's wrong answer survived 90 seconds and forfeited its bond to the honest corrector. Lying is expensive; correcting is profitable.</div>
+      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Trader trust</div>
+      <div style="color:var(--ink);font-size:16px;line-height:1.5;">Your markets carry an on-chain commitment to a neutral resolution process that anyone can verify — and anyone can contest — before payouts happen.</div>
     </div>
   </section>
 
@@ -109,8 +109,8 @@
 
   <!-- live evidence -->
   <section style="padding:36px 0 8px;">
-    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">Don't take our word — read the chain</h2>
-    <p style="font-size:17px;line-height:1.7;max-width:700px;">A complete lifecycle, run on testnet the day permissionless deployment launched, including a deliberate manipulation attempt:</p>
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">A worked example, on-chain</h2>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">Here is one complete lifecycle of a Kleros-resolved HIP-4 market on testnet — including a deliberately staged manipulation attempt, so the dispute mechanics are visible. Every step is independently verifiable:</p>
     <table style="margin:10px 0 6px;">
       <tr><th style="width:250px;">Claim</th><th>Proof</th></tr>
       <tr><td>Market deployed permissionlessly</td><td><a href="https://app.hyperliquid-testnet.xyz/explorer/tx/0x8b3c0fc9205c79cb8cb50425f3977901080027aebb5f989d2f04bb1bdf5053b6" class="mono" style="font-size:13px;">deploy tx on HyperCore</a></td></tr>
@@ -124,7 +124,7 @@
   <!-- toolkit -->
   <section style="padding:36px 0 8px;">
     <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">The toolkit</h2>
-    <p style="font-size:17px;line-height:1.7;max-width:700px;">Everything above is packaged as <span class="mono" style="color:var(--ink);">hip4kit</span> — a reference CLI a deployer runs end to end. It encodes the sharp edges we discovered operating on day one (canonical action serialization, agent-vs-master signing rules, question timing, the settlement latency budget), so your integration takes an afternoon, not a debugging week:</p>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">Everything above is packaged as <span class="mono" style="color:var(--ink);">hip4kit</span> — a reference CLI a deployer runs end to end. It encodes the sharp edges of the HIP-4 deployer API (canonical action serialization, agent-vs-master signing rules, oracle question timing, the settlement latency budget), so your integration takes an afternoon, not a debugging week:</p>
     <pre>hip4kit activate            # one-time deployer registration
 hip4kit deploy-binary ...   # create a market from a template
 hip4kit ask-reality  ...    # mirror question, Kleros arbitrator attached
