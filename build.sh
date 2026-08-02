@@ -9,7 +9,9 @@ UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, l
 
 rm -rf dist
 mkdir -p dist/fonts
-cp index.html hyperliquid.html dist/
+cp index.html dist/
+mkdir -p dist/hyperliquid
+cp hyperliquid.html dist/hyperliquid/index.html
 cp -R assets dist/
 cp robots.txt sitemap.xml llms.txt brief.md favicon-dark.png favicon-light.png apple-touch-icon.png dist/
 
