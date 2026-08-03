@@ -129,7 +129,7 @@ market in a few steps. Optimistic by default, with a credible court behind the
 hard cases.
 
 - [Oracle product docs](https://docs.kleros.io/products/oracle)
-- [Integration guide](https://docs.kleros.io/integrations/types-of-integrations/3.-kleros-oracle-integration)
+- [Integration guide](https://docs.kleros.io/legacy/integrate/types-of-integration#3-oracle-integration-reality-eth-+-kleros)
 
 Available on Ethereum, Arbitrum, Gnosis, Polygon, Base, Optimism, Unichain.
 Solana integration in progress.
