@@ -76,8 +76,8 @@
       <div style="color:var(--ink);font-size:16px;line-height:1.5;">A relayer settles your markets the moment the oracle finalizes — running on a restricted key that can't touch funds. The 1-week rule stops being your problem.</div>
     </div>
     <div>
-      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Trader trust</div>
-      <div style="color:var(--ink);font-size:16px;line-height:1.5;">Your markets carry an on-chain commitment to a neutral resolution process that anyone can verify — and anyone can contest — before payouts happen.</div>
+      <div class="mono" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mono);margin-bottom:6px;">Verifiable commitment</div>
+      <div style="color:var(--ink);font-size:16px;line-height:1.5;">The market's own on-chain description names the question that governs it. Anyone can check the settlement matched with a single call — and anyone can contest the answer before payouts happen.</div>
     </div>
   </section>
 
@@ -100,7 +100,7 @@
     <p style="font-size:17px;line-height:1.7;max-width:700px;">HyperCore can't read other chains, so no bridge is possible — instead, the deployer <em>pre-commits</em> to an external truth process and automates following it:</p>
     <ol class="steps" style="font-size:17px;line-height:1.65;max-width:700px;padding-left:22px;">
       <li><strong style="color:var(--ink);">Deploy</strong> your market from an approved template, as usual.</li>
-      <li><strong style="color:var(--ink);">Bind it</strong> — post a mirror question on <a href="https://reality.eth.limo">Reality.eth</a> with a <strong style="color:var(--ink);">Kleros arbitrator</strong>, and record the market&nbsp;→&nbsp;question link in the on-chain <a href="https://explore-testnet.hyperpc.app/address/0xCC9c47c46382E1eD3Bef8c90F9b40C5B41975F25">Outcome Oracle Registry</a> on HyperEVM. From this moment, your settlement discretion is publicly forfeited.</li>
+      <li><strong style="color:var(--ink);">Bind it</strong> — post the question on <a href="https://reality.eth.limo">Reality.eth</a> with a <strong style="color:var(--ink);">Kleros arbitrator</strong>, then name that question inside the market's own resolution criteria, in the template's <code>officialSource</code> keyword. The commitment travels in the market's on-chain description itself — nothing extra to look up. From this moment, your settlement discretion is publicly forfeited. <span style="color:var(--muted);">(For templates with no free keyword, an <a href="https://explore-testnet.hyperpc.app/address/0xCC9c47c46382E1eD3Bef8c90F9b40C5B41975F25">Outcome Oracle Registry</a> on HyperEVM carries the same binding externally.)</span></li>
       <li><strong style="color:var(--ink);">Resolve in the open</strong> — at settlement time, anyone posts the answer with money behind it. Wrong answers are challengeable at 2× the bond by anyone on earth. Genuinely contested questions go to a <strong style="color:var(--ink);">Kleros jury</strong>, whose ruling is final and overrides all bonds.</li>
       <li><strong style="color:var(--ink);">Settle automatically</strong> — a relayer watches the question and, the moment it finalizes, settles your market to match, signed by a restricted agent key that can't touch funds. Never wrong, never late.</li>
     </ol>
@@ -110,38 +110,42 @@
   <!-- live evidence -->
   <section style="padding:36px 0 8px;">
     <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">A worked example, on-chain</h2>
-    <p style="font-size:17px;line-height:1.7;max-width:700px;">Here is one complete lifecycle of a Kleros-resolved HIP-4 market on testnet — including a deliberately staged manipulation attempt, so the dispute mechanics are visible. Every step is independently verifiable:</p>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">Outcome <span class="mono" style="color:var(--ink);">#11646</span> — <em>US Midterms 2026 Senate Control: Democrats v Republicans</em> — deployed from Hyperliquid's own <span class="mono">sportsContestWinner</span> template, with the resolution source written into the market's description. The answer was contested on purpose, from two different addresses, so the dispute mechanics are visible. Every step is independently verifiable:</p>
     <table style="margin:10px 0 6px;">
       <tr><th style="width:250px;">Claim</th><th>Proof</th></tr>
-      <tr><td>Market deployed permissionlessly</td><td><a href="https://app.hyperliquid-testnet.xyz/explorer/tx/0x8b3c0fc9205c79cb8cb50425f3977901080027aebb5f989d2f04bb1bdf5053b6" class="mono" style="font-size:13px;">deploy tx on HyperCore</a></td></tr>
-      <tr><td>Oracle binding published <em>before</em> resolution</td><td><a href="https://explore-testnet.hyperpc.app/tx/0xa909ee5ca92540be5c0bb554babd7dbc63ce716e85f8fad718bd6a50dea6931a" class="mono" style="font-size:13px;">registry tx on HyperEVM</a> (source-verified contract)</td></tr>
-      <tr><td>Question, arbitrator &amp; timing immutable</td><td><a href="https://reality.eth.limo/app/#!/network/421614/question/0xB78396EFaF0a177d125e9d45B2C6398Ac5f803B9-0x37e5db22a8007e4fe6795102bb1ab3f312308cb8eafd82380af4763dfb4013eb" class="mono" style="font-size:13px;">question on reality.eth</a></td></tr>
-      <tr><td>Manipulation attempted &amp; defeated</td><td>same page — answer history: honest 0.001 → <span class="mono" style="color:var(--warn);">false 0.002</span> → honest 0.004 → finalized <span class="mono" style="color:var(--pos);">YES</span></td></tr>
-      <tr><td>Settlement matches the oracle</td><td><a href="https://app.hyperliquid-testnet.xyz/explorer/tx/0xf780061afd81c30cf8f90425f49f6f0105001e009884e1df9b48b16dbc859cf7" class="mono" style="font-size:13px;">settle tx on HyperCore</a></td></tr>
+      <tr><td>Market deployed permissionlessly</td><td><a href="https://app.hyperliquid-testnet.xyz/explorer/tx/0x2b604f72a1ad620d2cda04265442e601040067583ca080dfcf28fac560a13bf7" class="mono" style="font-size:13px;">deploy tx on HyperCore</a></td></tr>
+      <tr><td>Resolution source named <em>in the market itself</em></td><td>same tx — <span class="mono" style="font-size:13px;">officialSource: reality.eth:0x268339e0…</span></td></tr>
+      <tr><td>Question, arbitrator &amp; timing immutable</td><td><a href="https://reality.eth.limo/app/#!/network/421614/question/0xB78396EFaF0a177d125e9d45B2C6398Ac5f803B9-0x268339e0fdbe521ec4a00d7da5a75173604ee76db2aea0ea6583b94300739bdb" class="mono" style="font-size:13px;">question on reality.eth</a></td></tr>
+      <tr><td>Answer contested &amp; resolved</td><td>same page — <a href="https://sepolia.arbiscan.io/tx/0x14b70802a68303c1968d0578459a4d4fdadaab5ca6bae6d4c811c12bd696e486" class="mono" style="font-size:13px;">0.001 Yes</a> → <a href="https://sepolia.arbiscan.io/tx/0x730469ddbe711a25d237192190caa0fed1d130a962340f3abdedda1ca6694eea" class="mono" style="font-size:13px;color:var(--warn);">0.002 No</a> → <a href="https://sepolia.arbiscan.io/tx/0x06aea7a368aca9025c19a9ab3c7bea206c3725bdcfab92cf3a9777dc3dbd3eba" class="mono" style="font-size:13px;">0.004 Yes</a> → finalized <span class="mono" style="color:var(--pos);">YES</span></td></tr>
+      <tr><td>Settlement matches the oracle</td><td><a href="https://app.hyperliquid-testnet.xyz/explorer/tx/0x1f7b11e89e08a05720f4042654724b01010029ce390bbf29c343bd3b5d0c7a41" class="mono" style="font-size:13px;">settle tx on HyperCore</a> — <span class="mono" style="font-size:13px;">settleFraction 1.0</span></td></tr>
     </table>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">Check the last step yourself — no trust in us required:</p>
+    <pre>curl -s -X POST https://api.hyperliquid-testnet.xyz/info \
+  -H 'Content-Type: application/json' \
+  -d '{"type":"settledOutcome","outcome":11646}'</pre>
   </section>
 
   <!-- toolkit -->
   <section style="padding:36px 0 8px;">
     <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">The toolkit</h2>
     <p style="font-size:17px;line-height:1.7;max-width:700px;">Everything above is packaged as <span class="mono" style="color:var(--ink);">hip4kit</span> — a reference CLI a deployer runs end to end. It encodes the sharp edges of the HIP-4 deployer API (canonical action serialization, agent-vs-master signing rules, oracle question timing, the settlement latency budget), so your integration takes an afternoon, not a debugging week:</p>
-    <pre>hip4kit activate            # one-time deployer registration
-hip4kit deploy-binary ...   # create a market from a template
-hip4kit ask-reality  ...    # mirror question, Kleros arbitrator attached
-hip4kit register-binding    # publish the oracle commitment on-chain
-hip4kit watch               # relayer: answer, monitor, settle — automatically</pre>
+    <pre>hip4kit activate           # one-time deployer registration
+hip4kit ask-question ...   # the question, Kleros arbitrator attached
+hip4kit deploy ...         # market from any template, bound to that question
+hip4kit watch              # relayer: monitor, settle the moment it finalizes</pre>
     <p style="font-size:17px;line-height:1.7;max-width:700px;">Your master key signs exactly once (activation). Everything operational runs on a restricted, revocable agent key. The toolkit is open — or integrate the pattern directly into your own stack; nothing about it is proprietary. <a href="mailto:juanrah@kleros.io">Write to us</a> for the repo and a guided setup.</p>
   </section>
 
   <!-- what's next -->
   <section style="padding:36px 0 8px;">
-    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">Where this goes: beyond price markets</h2>
-    <p style="font-size:17px;line-height:1.7;max-width:700px;">Today's templates only express price questions. The vast category — sports, elections, real-world events — is exactly what Hyperliquid's template system can't safely allow yet, because ambiguous questions need a resolution process, not just a threshold. One template changes that: <em>"settles per the finalized answer of a Reality.eth question."</em> The template stays mechanically unambiguous; the human question lives where bonds and juries handle ambiguity. We've drafted that template and are putting it through Hyperliquid's feedback process. Deployers who integrate the pattern now are first in line for the markets everyone actually wants to trade.</p>
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;color:var(--ink);margin:0 0 16px;">Where this goes: making the commitment visible</h2>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">The template catalog now reaches well past price thresholds — sports contests, rate decisions, and more arriving as Hyperliquid iterates. Those templates settle against an <span class="mono">officialSource</span> named in prose, with a fallback to <em>"independent reputable reporting."</em> That is precisely where contested settlements will land, and precisely where a bonded oracle with a jury of last resort belongs.</p>
+    <p style="font-size:17px;line-height:1.7;max-width:700px;">Because <span class="mono">officialSource</span> is free text, the binding above already works — no protocol change, today. What's missing is a <em>type</em>. A typed resolution-source keyword would let the exchange validate the reference at deploy time and let the interface show traders the question, its arbitrator and its live answer, instead of leaving the commitment buried in a description nothing renders. We've put that proposal into Hyperliquid's feedback process. Deployers who adopt the pattern now inherit the visibility the moment it ships.</p>
   </section>
 
   <!-- footer -->
   <footer style="border-top:1px solid var(--line);margin-top:44px;padding:26px 0 40px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;">
-    <div class="mono" style="font-size:12px;letter-spacing:.12em;color:var(--mono);">KLEROS · ORACLE — <a href="https://oracle.kleros.io/">the full brief</a> · <a href="https://docs.kleros.io/products/oracle">docs</a></div>
+    <div class="mono" style="font-size:12px;letter-spacing:.12em;color:var(--mono);">KLEROS · ORACLE — <a href="https://oracle.kleros.io/">the full brief</a> · <a href="https://docs.kleros.io/products/reality">docs</a></div>
     <div class="mono" style="font-size:12px;letter-spacing:.12em;color:var(--mono);"><a href="mailto:juanrah@kleros.io">juanrah@kleros.io</a> · <a href="https://t.me/juanrah">t.me/juanrah</a></div>
   </footer>
 

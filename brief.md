@@ -128,7 +128,7 @@ result, making concentration expensive rather than decisive.
 market in a few steps. Optimistic by default, with a credible court behind the
 hard cases.
 
-- [Oracle product docs](https://docs.kleros.io/products/oracle)
+- [Oracle product docs](https://docs.kleros.io/products/reality)
 - [Integration guide](https://docs.kleros.io/legacy/integrate/types-of-integration#3-oracle-integration-reality-eth-+-kleros)
 
 Available on Ethereum, Arbitrum, Gnosis, Polygon, Base, Optimism, Unichain.
