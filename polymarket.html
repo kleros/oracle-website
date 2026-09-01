@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kleros for Polymarket</title>
+<meta name="description" content="Why Polymarket needs an independent court behind its genuinely contested resolutions: nine wallets cast half the vote weight, there is no appeal, and the CFTC has already asked how disputes should be resolved. A scoped pilot, funded by Kleros.">
+<link rel="canonical" href="https://oracle.kleros.io/polymarket/">
+<meta property="og:title" content="Kleros for Polymarket">
+<meta property="og:description" content="Nine wallets cast half the vote weight on Polymarket disputes, and the losing side has no appeal. What a court changes, and a pilot small enough to be uncontroversial.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://oracle.kleros.io/polymarket/">
+<meta property="og:site_name" content="Kleros">
+<meta name="theme-color" content="#16130E">
+<link rel="icon" href="/favicon-dark.png" type="image/png" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon-light.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500;1,6..72,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Kleros official dark theme, tokens from github.com/kleros/oracle-website */
+    --bg:#16130E;
+    --ink:#F1ECE1;
+    --text:#C9C2B2;
+    --muted:#A39C8B;
+    --faint:#6B6454;
+    --line:#2E2820;
+    --accent:#A98BE8;
+    --accent-deep:#CBB9F2;
+    --reg:#D6904F;
+    --on-accent:#16130E;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --serif:'Newsreader',Georgia,serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    overscroll-behavior:none;
+    font-family:var(--serif);font-optical-sizing:auto;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:var(--on-accent);}
+
+  /* ---------- base: a plain stacked document (no JS, or reduced motion) ---------- */
+  #stage{display:block;}
+  .scene{
+    display:flex;align-items:center;align-items:safe center;justify-content:center;
+    padding:clamp(28px,7vw,80px);min-height:72vh;border-bottom:1px solid var(--line);
+  }
+  .inner{width:100%;max-width:920px;}
+
+  /* ---------- deck: one gesture, one full transition ---------- */
+  body.deck{overflow:hidden;height:100vh;height:100dvh;}
+  body.deck #stage{position:fixed;inset:0;height:100vh;height:100dvh;overflow:hidden;}
+  body.deck .scene{
+    position:absolute;inset:0;min-height:0;border-bottom:none;overflow-y:auto;
+    opacity:0;pointer-events:none;
+    transition:opacity .42s ease;
+  }
+  /* the incoming scene waits for the outgoing one to finish clearing */
+  body.deck .scene.on{opacity:1;pointer-events:auto;transition-delay:.4s;}
+  body.deck .scene.on .inner{animation:rise .8s cubic-bezier(.2,.7,.2,1) .4s both;}
+  @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+
+  /* ---------- type ---------- */
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:11px;font-weight:500;
+    letter-spacing:0.24em;text-transform:uppercase;color:var(--faint);
+    margin-bottom:clamp(22px,4vh,38px);
+  }
+  .mark{width:15px;height:auto;flex:none;color:var(--muted);}
+  .q{
+    margin:0;font-weight:400;color:var(--ink);
+    font-size:clamp(34px,6.4vw,80px);line-height:1.06;
+    letter-spacing:-0.015em;text-wrap:balance;
+  }
+  .q em{font-style:italic;color:var(--accent);}
+  .a{
+    margin:0;font-weight:500;color:var(--ink);
+    font-size:clamp(28px,4.8vw,58px);line-height:1.12;
+    letter-spacing:-0.012em;text-wrap:balance;
+  }
+  .a em{font-style:italic;color:var(--accent);}
+  .sub{
+    margin:clamp(20px,3.4vh,32px) 0 0;max-width:56ch;
+    font-size:clamp(17px,1.7vw,22px);line-height:1.55;color:var(--muted);
+  }
+  .sub b{color:var(--text);font-weight:500;}
+  .src{
+    margin-top:12px;max-width:62ch;
+    font-family:var(--mono);font-size:11px;line-height:1.55;
+    letter-spacing:0.01em;color:var(--faint);
+  }
+  .cite{
+    margin-top:clamp(22px,3.6vh,34px);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--faint);
+  }
+
+  /* ---------- the 9-wallet figure ---------- */
+  .fig{
+    font-family:var(--mono);font-weight:600;color:var(--ink);
+    font-size:clamp(40px,12vw,170px);line-height:0.95;letter-spacing:-0.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .fig span{color:var(--accent);}
+  .fig small{display:block;font-size:clamp(15px,1.5vw,19px);font-weight:400;letter-spacing:0.14em;color:var(--faint);margin-top:18px;}
+
+  /* ---------- list of beats ---------- */
+  .beats{margin:clamp(26px,4vh,42px) 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:clamp(14px,2.2vh,22px);}
+  .beats li{
+    display:grid;grid-template-columns:26px 1fr;gap:clamp(14px,2vw,24px);align-items:baseline;
+    font-size:clamp(17px,1.9vw,24px);line-height:1.4;color:var(--text);
+  }
+  .beats .n{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.1em;color:var(--faint);}
+  .beats.want .n{color:var(--reg);}
+  .beats.give .n{color:var(--accent);}
+  .beats.give li{color:var(--ink);}
+  .beats .g{display:block;margin-top:6px;font-size:clamp(14.5px,1.4vw,17px);color:var(--muted);line-height:1.5;}
+
+  /* ---------- the quote scene ---------- */
+  .quote{
+    margin:0;font-size:clamp(24px,3.6vw,44px);line-height:1.28;
+    color:var(--ink);font-style:italic;font-weight:400;text-wrap:balance;
+    border-left:2px solid var(--reg);padding-left:clamp(20px,3vw,38px);
+  }
+  .attr{
+    margin-top:clamp(20px,3vh,28px);padding-left:clamp(22px,3vw,40px);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--reg);
+  }
+
+  /* ---------- closing ---------- */
+  .terms{
+    margin:clamp(24px,4vh,38px) 0 0;padding:0;list-style:none;
+    display:flex;flex-wrap:wrap;gap:10px 0;
+  }
+  .terms li{
+    font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--muted);padding:0 18px;border-left:1px solid var(--line);
+  }
+  .terms li:first-child{padding-left:0;border-left:none;}
+  .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:clamp(28px,4.5vh,44px);}
+  .btn{
+    appearance:none;background:none;cursor:pointer;
+    font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:0.1em;
+    text-transform:uppercase;text-decoration:none;padding:15px 26px;border-radius:4px;
+    transition:background .2s,color .2s;
+  }
+  .btn.solid{background:var(--accent);color:var(--on-accent);}
+  .btn.solid:hover{background:var(--accent-deep);}
+  .btn.line{border:1px solid var(--line);color:var(--ink);}
+  .btn.line:hover{border-color:var(--accent);color:var(--accent-deep);}
+  a:focus-visible,.btn:focus-visible,.quiet button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .quiet{margin-top:16px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;}
+  .quiet button{
+    appearance:none;background:none;border:0;padding:0;cursor:pointer;
+    font:inherit;letter-spacing:inherit;color:var(--faint);
+    text-decoration:underline;text-underline-offset:2px;transition:color .2s;
+  }
+  .quiet button:hover{color:var(--muted);}
+
+
+  /* ---------- charts ----------
+     Categorical trio validated with the dataviz validator against this surface:
+     #7E5FD0/#C98500/#199E70: lightness band, chroma, CVD (protan ΔE 8.4),
+     normal-vision (19.8) and 3:1 contrast all PASS on #16130E.
+     The purple ordinal ramp is monotonic in lightness, every step ≥3.9:1.      */
+  .viz{
+    --s1:#7E5FD0; --s2:#C98500; --s3:#199E70;
+    --r1:#CBB9F2; --r2:#C1AEEE; --r3:#B8A2EA; --r4:#AE97E5; --r5:#A48CE1;
+    --r6:#9B81DD; --r7:#9176D8; --r8:#886AD4; --r9:#7E5FD0;
+    --rest:#6B6454;
+    margin-top:clamp(24px,4vh,38px);
+  }
+  .vlabel{
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:10px;
+  }
+  .vlabel b{color:var(--ink);font-weight:600;}
+
+  /* stacked share bar */
+  .vbar{display:flex;gap:2px;height:clamp(38px,6vh,56px);width:100%;}
+  .vseg{
+    flex:0 1 auto;border-radius:2px;transform:scaleX(0);transform-origin:left center;
+    transition:transform .34s cubic-bezier(.2,.8,.2,1);
+  }
+  .viz.built .vseg{transform:scaleX(1);}
+  .vmark{
+    position:relative;height:18px;margin-top:8px;
+    border-left:1px dashed var(--line);
+  }
+  .vmark span{
+    position:absolute;left:8px;top:1px;
+    font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--faint);white-space:nowrap;
+  }
+
+  /* growing columns */
+  .vcols{display:flex;align-items:flex-end;gap:clamp(10px,2.5vw,26px);height:clamp(120px,20vh,190px);}
+  .vcol{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;}
+  .vcol .fill{
+    border-radius:2px 2px 0 0;transform:scaleY(0);transform-origin:bottom;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1);
+  }
+  .viz.built .vcol .fill{transform:scaleY(1);}
+  .vcol .cap{
+    font-family:var(--mono);font-size:clamp(15px,2vw,22px);font-weight:600;
+    color:var(--ink);margin-bottom:8px;font-variant-numeric:tabular-nums;
+  }
+  .vfoot{
+    display:flex;gap:clamp(10px,2.5vw,26px);margin-top:10px;
+    font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--faint);
+  }
+  .vfoot span{flex:1;}
+
+  /* horizontal magnitude bars */
+  .vrows{display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px);}
+  .vrow{display:grid;grid-template-columns:clamp(72px,11vw,104px) 1fr auto;gap:14px;align-items:center;}
+  .vrow .nm{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+  .vrow .tr{height:clamp(16px,2.6vh,24px);}
+  .vrow .fill{
+    height:100%;border-radius:2px;transform:scaleX(0);transform-origin:left center;
+    transition:transform .4s cubic-bezier(.2,.8,.2,1);
+  }
+  .viz.built .vrow .fill{transform:scaleX(1);}
+  .vrow .val{font-family:var(--mono);font-size:clamp(13px,1.5vw,17px);font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;}
+
+  /* legend: identity is never colour alone */
+  .vkey{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;color:var(--muted);}
+  .vkey i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:7px;vertical-align:0;}
+
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+
+  #tip{
+    position:fixed;z-index:60;pointer-events:none;opacity:0;transition:opacity .15s;
+    background:#211A31;border:1px solid #3C2F58;border-radius:4px;padding:7px 10px;
+    font-family:var(--mono);font-size:11px;color:var(--ink);white-space:nowrap;
+  }
+  #sound{
+    position:fixed;z-index:40;bottom:clamp(22px,3.4vh,38px);left:clamp(24px,5vw,58px);
+    appearance:none;background:none;border:0;padding:4px;cursor:pointer;pointer-events:auto;
+    font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--faint);transition:color .2s;display:none;
+  }
+  body.deck #sound{display:block;}
+  #sound:hover{color:var(--muted);}
+  #sound:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  @media (max-width:640px){#sound{left:22px;bottom:calc(20px + env(safe-area-inset-bottom));}}
+
+  /* ---------- quiet chrome ---------- */
+  .chrome{position:fixed;z-index:20;font-family:var(--mono);font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);pointer-events:none;}
+  #brand{
+    top:clamp(22px,3.4vh,38px);left:clamp(24px,5vw,58px);
+    display:flex;align-items:center;gap:8px;transition:opacity .5s;
+  }
+  #brand .mark{width:12px;}
+  body.deck #brand{opacity:0;}
+  #brand b{color:var(--muted);font-weight:500;}
+  #count,#hint,#bar{display:none;}
+  body.deck #count,body.deck #bar{display:block;}
+  body.deck #hint{display:block;}
+  #count{bottom:clamp(22px,3.4vh,38px);right:clamp(24px,5vw,58px);font-variant-numeric:tabular-nums;}
+  #hint{
+    position:fixed;left:50%;transform:translateX(-50%);bottom:clamp(22px,3.4vh,38px);z-index:20;
+    font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--faint);
+    transition:opacity .5s;pointer-events:none;
+  }
+  #hint i{display:block;width:1px;height:22px;background:var(--line);margin:10px auto 0;}
+  #bar{position:fixed;top:0;left:0;height:1px;background:var(--accent);width:0;z-index:30;}
+
+  @media (max-width:640px){
+    .scene{padding:26px 22px calc(26px + env(safe-area-inset-bottom));}
+    .beats li{grid-template-columns:18px 1fr;gap:12px;}
+    /* dividers look broken once these wrap, so stack them instead */
+    .terms{flex-direction:column;gap:8px;}
+    .terms li{padding:0 0 0 12px;border-left:1px solid var(--line);}
+    .terms li:first-child{padding-left:12px;border-left:1px solid var(--line);}
+    .cta{flex-direction:column;}
+    .btn{text-align:center;}
+    .quote,.attr,.sub[style]{padding-left:16px !important;}
+    #brand{top:20px;left:22px;}
+    #count{bottom:calc(20px + env(safe-area-inset-bottom));right:22px;}
+    #hint{bottom:calc(20px + env(safe-area-inset-bottom));}
+  }</style>
+</head>
+<body>
+<div id="stage">
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <div class="eyebrow"><svg class="mark" viewBox="0 0 441.26 402.62" role="img" aria-label="Kleros"><path fill="currentColor" fill-rule="evenodd" d="M134.59,36.54l195.76,8.74,79.52,176.31L298,382.58,101.16,370.15,20.47,179.08ZM278.36,138.18l-141.93,62,121.31,93.95ZM261.92,107,148.52,58.16,124.73,161ZM233.17,317.77,110,229.62l3,119.52Zm157-96.79-84-85.09L283.87,299.94ZM262,336.72,158.11,364.13,280.36,372ZM373.76,260l-91,67.76,18.11,35.38Zm-43-190.08-17.83,36.34,65.81,66.86ZM308.45,52.53,193,47.85l95.29,41.68ZM117.87,69.3,37,171.61l54.11,11.48ZM87.84,203,33.45,191.5,90,325.35Z"/></svg>Kleros × Polymarket</div>
+      <h1 class="q">Why does Polymarket need <em>Kleros</em>?</h1>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <p class="a">Because you can't tell <em>which market will blow up</em>.</p>
+      <p class="sub">An optimistic oracle handles the vast majority of markets perfectly well. The ones that turn into angry threads, manual overrides and headlines cannot be picked out in advance. So the answer is a deeper layer behind all of them.</p>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <h2 class="q">Who decides when a market is <em>disputed</em>?</h2>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <div class="fig"><span>9</span> wallets<small>OF THE 6,878 THAT HAVE EVER VOTED</small></div>
+      <div class="viz" data-chart="1">
+        <div class="vlabel"><span><b>49.9%</b> the nine largest</span><span><b>50.1%</b> the other 6,869</span></div>
+        <div class="vbar"><div class="vseg" style="flex-grow:7.6;background:var(--r1);" data-tip="Wallet #1 · 7.6% of all vote weight"></div><div class="vseg" style="flex-grow:6.96;background:var(--r2);" data-tip="Wallet #2 · 6.96% of all vote weight"></div><div class="vseg" style="flex-grow:6.45;background:var(--r3);" data-tip="Wallet #3 · 6.45% of all vote weight"></div><div class="vseg" style="flex-grow:6.4;background:var(--r4);" data-tip="Wallet #4 · 6.4% of all vote weight"></div><div class="vseg" style="flex-grow:6.33;background:var(--r5);" data-tip="Wallet #5 · 6.33% of all vote weight"></div><div class="vseg" style="flex-grow:4.37;background:var(--r6);" data-tip="Wallet #6 · 4.37% of all vote weight"></div><div class="vseg" style="flex-grow:4.34;background:var(--r7);" data-tip="Wallet #7 · 4.34% of all vote weight"></div><div class="vseg" style="flex-grow:3.98;background:var(--r8);" data-tip="Wallet #8 · 3.98% of all vote weight"></div><div class="vseg" style="flex-grow:3.47;background:var(--r9);" data-tip="Wallet #9 · 3.47% of all vote weight"></div><div class="vseg" style="flex-grow:50.10;background:var(--rest);" data-tip="Everyone else · 6,869 wallets · 50.1%"></div></div>
+        <div class="vmark" style="margin-left:49.9%;"><span>half of all vote weight</span></div>
+        <div class="vkey"><span><i style="background:var(--r5);"></i>Nine largest wallets</span><span><i style="background:var(--rest);"></i>Everyone else</span></div>
+        <table class="sr-only"><caption>Share of UMA DVM vote weight on Polymarket disputes</caption><tbody><tr><td>Wallet #1</td><td>7.6%</td></tr><tr><td>Wallet #2</td><td>6.96%</td></tr><tr><td>Wallet #3</td><td>6.45%</td></tr><tr><td>Wallet #4</td><td>6.4%</td></tr><tr><td>Wallet #5</td><td>6.33%</td></tr><tr><td>Wallet #6</td><td>4.37%</td></tr><tr><td>Wallet #7</td><td>4.34%</td></tr><tr><td>Wallet #8</td><td>3.98%</td></tr><tr><td>Wallet #9</td><td>3.47%</td></tr><tr><td>Other 6,869 wallets</td><td>50.1%</td></tr></tbody></table>
+      </div>
+      <div class="cite">Verified on-chain · UMA DVM vote records · Jul 2026</div>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <h2 class="q">And if the losing side <em>disagrees</em>?</h2>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <p class="a">There is no appeal.</p>
+      <p class="sub">So the appeal happens somewhere else. The Strategy bitcoin market is now before the New York Supreme Court, where it costs more, takes years, and is decided by a judge with no knowledge of the market. <b>A resolution layer without an appeal does not remove the appeal. It moves it to a courtroom.</b></p>
+      <div class="cite">Supreme Court of the State of New York · Index No. 158389/2026</div>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <h2 class="q">What does Kleros do <em>instead</em>?</h2>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <p class="a">It runs a court.</p>
+      <ul class="beats">
+        <li><span class="n">01</span><span>A panel drawn at random for that one case, unknown until it is drawn.</span></li>
+        <li><span class="n">02</span><span>Evidence from both sides, and each juror's written justification on a public record.</span></li>
+        <li><span class="n">03</span><span>An appeal that redraws a larger panel.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <p class="a">A court that <em>doubles every appeal</em>.</p>
+      <div class="viz" data-chart="2">
+        <div class="vcols">
+          <div class="vcol"><div class="cap">3</div><div class="fill" style="height:9.7%;background:var(--r1);" data-tip="First panel · 3 jurors"></div></div>
+          <div class="vcol"><div class="cap">7</div><div class="fill" style="height:22.6%;background:var(--r4);" data-tip="First appeal · 7 jurors"></div></div>
+          <div class="vcol"><div class="cap">15</div><div class="fill" style="height:48.4%;background:var(--r7);" data-tip="Second appeal · 15 jurors"></div></div>
+          <div class="vcol"><div class="cap">31</div><div class="fill" style="height:100%;background:var(--r9);" data-tip="Third appeal · 31 jurors"></div></div>
+        </div>
+        <div class="vfoot"><span>Panel</span><span>Appeal 1</span><span>Appeal 2</span><span>Appeal 3</span></div>
+        <table class="sr-only"><caption>Jurors drawn at each appeal round</caption><tbody><tr><td>Panel</td><td>3</td></tr><tr><td>Appeal 1</td><td>7</td></tr><tr><td>Appeal 2</td><td>15</td></tr><tr><td>Appeal 3</td><td>31</td></tr></tbody></table>
+      </div>
+      <p class="sub">Overturning an evidenced ruling costs more every round. Panel sizes are set per court; this is the pilot's proposed configuration.</p>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <p class="a">It has done this <em>2,793 times</em>.</p>
+      <div class="viz" data-chart="3">
+        <div class="vrows">
+          <div class="vrow"><span class="nm">Ethereum</span><div class="tr"><div class="fill" style="width:100%;background:var(--s1);" data-tip="Ethereum · Court V1 · 1,678 disputes"></div></div><span class="val">1,678</span></div>
+          <div class="vrow"><span class="nm">Gnosis</span><div class="tr"><div class="fill" style="width:56.7%;background:var(--s2);" data-tip="Gnosis · Court V1 · 951 disputes"></div></div><span class="val">951</span></div>
+          <div class="vrow"><span class="nm">Arbitrum</span><div class="tr"><div class="fill" style="width:9.8%;background:var(--s3);" data-tip="Arbitrum · Court V2 · 164 disputes"></div></div><span class="val">164</span></div>
+        </div>
+        <table class="sr-only"><caption>Kleros disputes settled on-chain, by chain</caption><tbody><tr><td>Ethereum</td><td>1,678</td></tr><tr><td>Gnosis</td><td>951</td></tr><tr><td>Arbitrum</td><td>164</td></tr></tbody></table>
+      </div>
+      <p class="sub">Settled on-chain since 2018, across three chains. <b>Every one reached a final answer.</b></p>
+      <div class="cite">Counted on-chain · Aug 2026</div>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <h2 class="q">What do <em>regulators</em> want?</h2>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <p class="a">Due process.</p>
+      <ul class="beats want">
+        <li><span class="n">01</span><span>Someone impartial to decide it.</span></li>
+        <li><span class="n">02</span><span>Both sides put in evidence.</span></li>
+        <li><span class="n">03</span><span>A written answer that is final.</span></li>
+      </ul>
+      <div class="cite">The CFTC's own description of an acceptable dispute resolution mechanism</div>
+      <div class="src">Its words: an &ldquo;objective and impartial decisionmaker,&rdquo; an opportunity to be heard, and a &ldquo;prompt, written, final&rdquo; award.</div>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <blockquote class="quote">A statement that a contract will settle based upon a consensus of yet-to-be-determined sources may not be sufficient.</blockquote>
+      <div class="attr">CFTC Staff Letter No. 26-08 · footnote 26</div>
+      <p class="sub" style="padding-left:clamp(22px,3vw,40px);">Sources and methods have to be named and assessed before a contract is listed. No rule has been written yet. <b>That is the useful part.</b></p>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <h2 class="q">What does <em>Kleros</em> provide?</h2>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <p class="a">Due process.</p>
+      <ul class="beats give">
+        <li><span class="n">01</span><span>Someone impartial to decide it.<span class="g">A panel drawn at random per case, that did not write the rule and cannot amend it.</span></span></li>
+        <li><span class="n">02</span><span>Both sides put in evidence.<span class="g">Adversarial submissions from both sides, before the money moves.</span></span></li>
+        <li><span class="n">03</span><span>A written answer that is final.<span class="g">Each juror's justification, public, and final on-chain.</span></span></li>
+      </ul>
+      <div class="cite">The same list</div>
+    </div>
+  </section>
+
+  <section class="scene" data-scene>
+    <div class="inner">
+      <h2 class="q">Let's <em>test it</em>.</h2>
+      <p class="sub">A pilot small enough to be uncontroversial. Polymarket picks which markets enter. Kleros builds it, operates it and pays for it. Sports, prices and the undisputed majority stay exactly as they are, and unwinding it is a routing change.</p>
+      <ul class="terms">
+        <li>6 months or 20 markets</li>
+        <li>Polymarket picks</li>
+        <li>Kleros funds it</li>
+        <li>Unwind: a routing change</li>
+      </ul>
+      <div class="cta">
+        <a class="btn solid" href="https://t.me/juanrah" target="_blank" rel="noopener">Telegram · @juanrah</a>
+        <a class="btn line" href="mailto:juanrah@kleros.io">juanrah@kleros.io</a>
+      </div>
+      <div class="quiet"><button type="button" data-restart>Start again ↑</button></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="chrome" id="brand"><svg class="mark" viewBox="0 0 441.26 402.62" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M134.59,36.54l195.76,8.74,79.52,176.31L298,382.58,101.16,370.15,20.47,179.08ZM278.36,138.18l-141.93,62,121.31,93.95ZM261.92,107,148.52,58.16,124.73,161ZM233.17,317.77,110,229.62l3,119.52Zm157-96.79-84-85.09L283.87,299.94ZM262,336.72,158.11,364.13,280.36,372ZM373.76,260l-91,67.76,18.11,35.38Zm-43-190.08-17.83,36.34,65.81,66.86ZM308.45,52.53,193,47.85l95.29,41.68ZM117.87,69.3,37,171.61l54.11,11.48ZM87.84,203,33.45,191.5,90,325.35Z"/></svg><span><b>Kleros</b> × Polymarket</span></div>
+<div class="chrome" id="count">01</div>
+<div id="hint">Scroll<i></i></div>
+<button id="sound" type="button" aria-pressed="false">♪ Sound off</button>
+<div id="tip" role="status"></div>
+<div id="bar"></div>
+
+<script>
+(function () {
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('[data-scene]'));
+  var N = scenes.length;
+  if (!N) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // stacked document: render every chart at rest, no motion and no sound
+    Array.prototype.forEach.call(document.querySelectorAll('[data-chart]'), function (v) {
+      v.classList.add('built');
+    });
+    return;
+  }
+
+  var countEl = document.getElementById('count');
+  var hintEl = document.getElementById('hint');
+  var barEl = document.getElementById('bar');
+  var brandEl = document.getElementById('brand');
+  var DUR = 950;                       // one full fade-out + fade-in
+  var i = 0, locked = false, accum = 0, lockT = null;
+
+  document.body.classList.add('deck');
+
+  /* ---------- tick synth: one short click per mark as it lands ---------- */
+  var actx = null, muted = true;
+  var soundBtn = document.getElementById('sound');
+  function tick(i, total) {
+    if (muted) return;
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === 'suspended') actx.resume();
+      var t = actx.currentTime;
+      var osc = actx.createOscillator(), gain = actx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(480 + (i / Math.max(1, total - 1)) * 320, t);
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(0.06, t + 0.006);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.085);
+      osc.connect(gain); gain.connect(actx.destination);
+      osc.start(t); osc.stop(t + 0.1);
+    } catch (e) { /* no audio available; charts still build */ }
+  }
+  soundBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    muted = !muted;
+    soundBtn.textContent = muted ? '♪ Sound off' : '♪ Sound on';
+    soundBtn.setAttribute('aria-pressed', String(!muted));
+  });
+
+  /* ---------- charts build when their scene arrives ---------- */
+  function resetChart(scene) {
+    var viz = scene.querySelector('[data-chart]');
+    if (viz) viz.classList.remove('built');
+  }
+  function buildChart(scene) {
+    var viz = scene.querySelector('[data-chart]');
+    if (!viz) return;
+    var parts = Array.prototype.slice.call(viz.querySelectorAll('.vseg, .vcol .fill, .vrow .fill'));
+    var step = parts.length > 6 ? 55 : 120;
+    parts.forEach(function (el, k) { el.style.transitionDelay = (k * step) + 'ms'; });
+    void viz.offsetWidth;
+    setTimeout(function () {
+      if (!scene.classList.contains('on')) return;
+      viz.classList.add('built');
+      parts.forEach(function (el, k) {
+        setTimeout(function () {
+          if (scene.classList.contains('on')) tick(k, parts.length);
+        }, k * step);
+      });
+    }, 420);
+  }
+
+  /* ---------- hover layer ---------- */
+  var tipEl = document.getElementById('tip');
+  document.addEventListener('pointerover', function (e) {
+    var t = e.target.closest && e.target.closest('[data-tip]');
+    if (!t) return;
+    tipEl.textContent = t.getAttribute('data-tip');
+    tipEl.style.opacity = 1;
+  });
+  document.addEventListener('pointermove', function (e) {
+    if (tipEl.style.opacity === '0' || !tipEl.style.opacity) return;
+    var x = Math.min(e.clientX + 14, window.innerWidth - tipEl.offsetWidth - 10);
+    tipEl.style.left = x + 'px';
+    tipEl.style.top = (e.clientY - tipEl.offsetHeight - 12) + 'px';
+  });
+  document.addEventListener('pointerout', function (e) {
+    if (e.target.closest && e.target.closest('[data-tip]')) tipEl.style.opacity = 0;
+  });
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  scenes.forEach(function (s, k) { s.setAttribute('aria-hidden', k ? 'true' : 'false'); });
+  scenes[0].classList.add('on');
+  buildChart(scenes[0]);
+  countEl.textContent = pad(1) + ' / ' + pad(N);
+  barEl.style.width = '0%';
+
+  function show(n) {
+    n = Math.max(0, Math.min(N - 1, n));
+    if (n === i) return;
+    scenes[i].classList.remove('on');
+    scenes[i].setAttribute('aria-hidden', 'true');
+    resetChart(scenes[i]);
+    i = n;
+    scenes[i].scrollTop = 0;
+    scenes[i].classList.add('on');
+    scenes[i].setAttribute('aria-hidden', 'false');
+    buildChart(scenes[i]);
+    countEl.textContent = pad(i + 1) + ' / ' + pad(N);
+    barEl.style.width = (N > 1 ? (i / (N - 1)) * 100 : 100) + '%';
+    hintEl.style.opacity = i === 0 ? 1 : 0;
+    brandEl.style.opacity = i === 0 ? 0 : 1;
+    locked = true;
+    clearTimeout(lockT);
+    lockT = setTimeout(function () { locked = false; accum = 0; }, DUR);
+  }
+  function go(d) { if (!locked) show(i + d); }
+
+  /* a scene taller than the viewport scrolls itself before the deck advances */
+  function canScroll(dir) {
+    var el = scenes[i];
+    if (el.scrollHeight <= el.clientHeight + 2) return false;
+    return dir > 0 ? el.scrollTop + el.clientHeight < el.scrollHeight - 2 : el.scrollTop > 2;
+  }
+
+  window.addEventListener('wheel', function (e) {
+    if (canScroll(e.deltaY > 0 ? 1 : -1)) return;
+    e.preventDefault();
+    if (locked) { accum = 0; return; }
+    accum += e.deltaY;
+    if (accum > 24) { accum = 0; go(1); }
+    else if (accum < -24) { accum = 0; go(-1); }
+  }, { passive: false });
+
+  window.addEventListener('keydown', function (e) {
+    var k = e.key;
+    if (k === 'ArrowDown' || k === 'ArrowRight' || k === 'PageDown' || k === ' ') { e.preventDefault(); go(1); }
+    else if (k === 'ArrowUp' || k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); go(-1); }
+    else if (k === 'Home') { e.preventDefault(); show(0); }
+    else if (k === 'End') { e.preventDefault(); show(N - 1); }
+  });
+
+  var y0 = null;
+  window.addEventListener('touchstart', function (e) {
+    y0 = e.touches.length === 1 ? e.touches[0].clientY : null;
+  }, { passive: true });
+  window.addEventListener('touchmove', function (e) {
+    if (y0 === null || e.touches.length > 1) return;   // let pinch-zoom through
+    if (!canScroll(e.touches[0].clientY < y0 ? 1 : -1)) e.preventDefault();
+  }, { passive: false });
+  window.addEventListener('touchend', function (e) {
+    if (y0 === null) return;
+    var dy = y0 - e.changedTouches[0].clientY;
+    if (Math.abs(dy) > 44) go(dy > 0 ? 1 : -1);
+    y0 = null;
+  });
+
+  var restart = document.querySelector('[data-restart]');
+  if (restart) restart.addEventListener('click', function (e) {
+    e.preventDefault(); e.stopPropagation(); show(0);
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target && e.target.closest && e.target.closest('a,button')) return;
+    go(1);
+  });
+})();
+</script>
+</body>
+</html>
