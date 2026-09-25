@@ -25,7 +25,7 @@ scales alongside the platform.
 - **2018** — Running a live, on-chain arbitration system since.
 - **2020** — Resolving prediction-market disputes. Omen (now Presagio) was
   first to integrate.
-- **2,653** — Disputes resolved on-chain across Ethereum, Gnosis & Arbitrum.
+- **2,982** — Disputes resolved on-chain across Ethereum, Gnosis & Arbitrum.
 - **+750** — Jurors participating in Kleros arbitration.
 
 With Reality.eth: five years of contested outcomes, settled by jury.
@@ -57,19 +57,19 @@ arbitration layer:
 Jurors cannot be chosen, and they cannot choose their case. More PNK raises
 your probability of being drawn, but it never buys the seat.
 
-## 4. Why not UMA
+## 4. What to ask any oracle
 
-**Same game. Different table.** Both reward voters for converging on the
-answer the panel is expected to choose, a Schelling point. The difference is
-who sits on the panel.
+**Same game. Different table.** Any voting oracle rewards voters for
+converging on the answer the panel is expected to choose, a Schelling point.
+The difference is who sits on the panel.
 
-|  | UMA | Kleros |
+|  | Holder-wide vote | Kleros |
 |---|---|---|
-| Who answers | The entire token-holder base votes on every dispute. | A fixed-size jury, drawn per case from a topic-relevant subcourt. |
-| Who decides | Token-weighted vote of holders. | A random, stake-weighted jury draw, per case. |
+| Who answers | Every token holder can vote on every dispute. | A fixed-size jury, drawn per case from a topic-relevant subcourt. |
+| Who decides | A token-weighted vote of whoever turns out. | A random, stake-weighted jury draw, per case. |
 | Scalability | Everyone votes on everything. As volume climbs, voters can't study each case. | Each case gets a dedicated jury drawn from 750+ active jurors, so review depth holds as volume grows. |
-| Due process | No appeal; escalation to the DVM, where ~9 wallets hold 50% of voting power. | Evidence + appeals. The jury doubles each round, raising the cost to overturn a coherent answer. |
-| Speed | ~2 days. | Most cases resolve in a day; heavily appealed cases can take a couple of weeks. |
+| Due process | One vote, no appeal. Once it is counted, it is final. | Evidence + appeals. The jury doubles each round, raising the cost to overturn a coherent answer. |
+| Speed | A few days per voting round. | Most cases resolve in a day; heavily appealed cases can take a couple of weeks. |
 
 ## 5. On real money
 
@@ -94,14 +94,13 @@ resolved too soon.
 
 ## 6. When oracles fail
 
-**Not every contested outcome is an oracle failure.** Some contested
-Polymarket outcomes trace to the market's own rules or a late clarification,
-not the oracle. But the oracle layer can be a structural weak point in its own
-right.
+**Not every contested outcome is an oracle failure.** Many contested outcomes
+trace to the market's own rules or a late clarification, not the oracle. A
+vague question produces an ugly dispute under any mechanism. But some
+questions are genuinely subjective, and at some point a human has to rule.
 
-> On UMA, voting power is concentrated in a handful of large holders, and a
-> majority of active voters are linkable to Polymarket trading accounts, a
-> direct positional conflict in several markets.
+> The real question was never whether humans decide the hard cases. It is
+> which humans, chosen how, and accountable to what.
 
 Under Kleros: 25% of stake is a 25% chance of being drawn as a juror, not 25%
 of the verdict. And every appeal raises the cost of holding a dishonest
@@ -126,12 +125,13 @@ result, making concentration expensive rather than decisive.
 
 **Make Kleros your resolution layer.** Plug Reality.eth and Kleros into your
 market in a few steps. Optimistic by default, with a credible court behind the
-hard cases.
+hard cases. Keep your fast path, whether a team, a bot or an AI resolver, and
+add a jury only for contested outcomes.
 
 - [Oracle product docs](https://docs.kleros.io/products/reality)
 - [Integration guide](https://docs.kleros.io/legacy/integrate/types-of-integration#3-oracle-integration-reality-eth-+-kleros)
 
-Available on Ethereum, Arbitrum, Gnosis, Polygon, Base, Optimism, Unichain.
+Available on Ethereum, Arbitrum, Gnosis, Polygon, Base, Optimism, Unichain, Rootstock.
 Solana integration in progress.
 
 Contact: juanrah@kleros.io · https://t.me/juanrah

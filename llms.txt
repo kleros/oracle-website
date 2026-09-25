@@ -4,7 +4,7 @@
 > (Reality.eth) backstopped by Kleros Court, an on-chain jury arbitration system.
 
 Live since 2018. Resolving prediction-market disputes since 2020 (Omen, now
-Presagio, was first to integrate). 2,653 disputes resolved on-chain across
+Presagio, was first to integrate). 2,982 disputes resolved on-chain across
 Ethereum, Gnosis and Arbitrum. 750+ jurors participating.
 
 ## Key facts
@@ -18,13 +18,15 @@ Ethereum, Gnosis and Arbitrum. 750+ jurors participating.
 - Jurors cannot choose their case and cannot be chosen: stake raises the
   probability of being drawn but never buys the seat. 25% of stake is a 25%
   chance of being drawn, not 25% of the verdict.
-- Versus UMA: Kleros uses a fixed-size per-case jury from a topic-relevant
-  subcourt with evidence and appeals; UMA uses a token-weighted vote of the
-  entire holder base with escalation to the DVM. Kleros cases mostly resolve in
-  a day; heavily appealed cases can take a couple of weeks.
+- Compared with a holder-wide token vote: Kleros uses a fixed-size per-case
+  jury from a topic-relevant subcourt, with evidence and appeals, so review
+  depth holds as dispute volume grows. Most cases resolve in a day; heavily
+  appealed cases can take a couple of weeks.
+- Works as an escalation layer: a venue keeps its fast path (team, bot or AI
+  resolver) and adds jury arbitration only for contested outcomes.
 - Integrations: Seer, Omen/Presagio, Foresight, Precog, Futarchy.fi,
   Deep Funding, Ringo.
-- Available on Ethereum, Arbitrum, Gnosis, Polygon, Base, Optimism, Unichain;
+- Available on Ethereum, Arbitrum, Gnosis, Polygon, Base, Optimism, Unichain, Rootstock;
   Solana integration in progress.
 
 ## Full content
