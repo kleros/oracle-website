@@ -18,7 +18,7 @@ scales alongside the platform.
 - **Credible neutrality** — Contested outcomes decided by an independent,
   randomly selected jury.
 
-## 2. Proof, before the pitch
+## 2. Track record
 
 **Live since 2018. Proven in production.**
 
