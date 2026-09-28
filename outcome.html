@@ -62,6 +62,7 @@
   body.deck .scene.on{opacity:1;pointer-events:auto;transition-delay:.4s;}
   /* first switch into deck mode: no fade, or every slide shows stacked while it fades out */
   body.deck.init .scene{transition:none;}
+  .js body:not(.deck) #stage{visibility:hidden;}
   body.deck .scene.on .inner{animation:rise .8s cubic-bezier(.2,.7,.2,1) .4s both;}
   @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
 
@@ -413,6 +414,15 @@
   .chips span.on{border-color:var(--accent);color:var(--accent-deep);}
   .chips b{font-weight:600;color:var(--ink);}
 </style>
+<script>
+  // Hide the slides until the deck script (end of body) has switched into deck mode, or the stacked
+  // document paints for a moment first. Skipped for reduced motion, which keeps the stacked document;
+  // the timeout keeps content from ever staying hidden if the deck script fails.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js');
+    setTimeout(function () { document.documentElement.classList.remove('js'); }, 3000);
+  }
+</script>
 </head>
 <body>
 <div id="stage">
