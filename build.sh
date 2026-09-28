@@ -12,6 +12,8 @@ mkdir -p dist/fonts
 cp index.html dist/
 mkdir -p dist/polymarket
 cp polymarket.html dist/polymarket/index.html
+mkdir -p dist/outcome
+cp outcome.html dist/outcome/index.html
 cp -R assets dist/
 cp robots.txt sitemap.xml llms.txt brief.md favicon-dark.png favicon-light.png apple-touch-icon.png dist/
 
