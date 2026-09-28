@@ -60,6 +60,8 @@
   }
   /* the incoming scene waits for the outgoing one to finish clearing */
   body.deck .scene.on{opacity:1;pointer-events:auto;transition-delay:.4s;}
+  /* first switch into deck mode: no fade, or every slide shows stacked while it fades out */
+  body.deck.init .scene{transition:none;}
   body.deck .scene.on .inner{animation:rise .8s cubic-bezier(.2,.7,.2,1) .4s both;}
   @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
 
@@ -665,7 +667,7 @@
   var DUR = 950;                       // one full fade-out + fade-in
   var i = 0, locked = false, accum = 0, lockT = null;
 
-  document.body.classList.add('deck');
+  document.body.classList.add('deck', 'init');
 
   /* ---------- tick synth: one short click per mark as it lands ---------- */
   var actx = null, muted = true;
@@ -738,6 +740,8 @@
   scenes.forEach(function (s, k) { s.setAttribute('aria-hidden', k ? 'true' : 'false'); });
   scenes[0].classList.add('on');
   buildChart(scenes[0]);
+  void document.body.offsetWidth;
+  requestAnimationFrame(function () { document.body.classList.remove('init'); });
   function paint() {
     countEl.innerHTML = '<b>' + pad(i + 1) + '</b> / ' + pad(N);
     prevBtn.disabled = i === 0;
