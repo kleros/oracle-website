@@ -19,3 +19,17 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
     Permissions-Policy = "geolocation=(), camera=(), microphone=()"
+
+# NFL results API (HIP-4 testnet), served from the oracle host. Same paths as the origin,
+# because the API's own links are root-relative (/v1/games.json, /evidence/...).
+[[redirects]]
+  from = "/v1/*"
+  to = "https://178-105-158-148.sslip.io/v1/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/evidence/*"
+  to = "https://178-105-158-148.sslip.io/evidence/:splat"
+  status = 200
+  force = true
