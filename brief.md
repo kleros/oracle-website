@@ -90,7 +90,8 @@ link.
   31 votes. Resolved too soon, run-off annulled.
 
 The hard cases, including the one where the right call was that the market
-resolved too soon.
+resolved too soon. See a full dispute, step by step:
+https://oracle.kleros.io/case-717/
 
 ## 6. When oracles fail
 

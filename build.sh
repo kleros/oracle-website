@@ -14,6 +14,8 @@ mkdir -p dist/polymarket
 cp polymarket.html dist/polymarket/index.html
 mkdir -p dist/outcome
 cp outcome.html dist/outcome/index.html
+mkdir -p dist/case-717
+cp case-717.html dist/case-717/index.html
 cp -R assets dist/
 cp robots.txt sitemap.xml llms.txt brief.md favicon-dark.png favicon-light.png apple-touch-icon.png dist/
 
